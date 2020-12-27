@@ -49,7 +49,7 @@
                 <ul class="cl">
                     <li>${user.username}</li>
                     <li class="dropDown dropDown_hover">
-                        <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
+                        <a href="#" class="dropDown_A">${user.username} <i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
                             <li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
                             <li><a href="#">切换账户</a></li>
@@ -77,7 +77,7 @@
     <div class="menu_dropdown bk_2">
 
         <dl id="menu-product">
-            <dt> <i class="Hui-iconfont">&#xe620; </i> &nbsp;<a data-href="${func.url}" data-title="${func.function}" href="javascript:void(0)">${func.function}</a> </dt>
+            <dt> <i class="Hui-iconfont">&#xe620; </i> &nbsp;<a data-href="<%=request.getContextPath()%>/${func.url}" data-title="${func.function}" href="javascript:void(0)">${func.function}</a> </dt>
         </dl>
 
     </div>

@@ -32,6 +32,15 @@ public class UserController {
             modelAndView.addObject("functions",functions);
         }
         return modelAndView;
+    }
 
+    @RequestMapping("private/admin/findUser")
+    public ModelAndView findUser(){
+        List<User> users = userService.findUser();
+        ModelAndView modelAndView = new ModelAndView("findUser");
+        if (users != null){
+            modelAndView.addObject("users",users);
+        }
+        return modelAndView;
     }
 }
