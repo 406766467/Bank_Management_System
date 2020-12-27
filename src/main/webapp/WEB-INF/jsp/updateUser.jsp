@@ -20,60 +20,65 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
-    <title>添加用户</title>
-    <meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-    <meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+    <title>更新用户信息</title>
+
 </head>
 <body>
 <article class="page-container">
-    <form class="form form-horizontal" id="form-admin-add" action="/api/v1/user/private/admin/addUser">
+    <form class="form form-horizontal" id="form-admin-add"  target="_parent" action="/api/v1/user/private/admin/updateUserById">
+        <div class="row cl" hidden>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户ID：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="${user.id}" placeholder="请输入用户名" id="id" name="id">
+            </div>
+        </div>
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="请输入用户名" id="username" name="username">
+                <input type="text" class="input-text" value="${user.username}" placeholder="请输入用户名" id="username" name="username">
             </div>
         </div>
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" value="" placeholder="请输入密码" id="password" name="password">
+                <input type="password" class="input-text" autocomplete="off" value="${user.password}" placeholder="请输入密码" id="password" name="password">
             </div>
         </div>
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>姓名：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off"  placeholder="请输入姓名" id="name" name="name">
+                <input type="text" class="input-text" autocomplete="off"  value="${user.name}" placeholder="请输入姓名" id="name" name="name">
             </div>
         </div>
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>年龄：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off"  placeholder="请输入年龄" id="age" name="age">
+                <input type="text" class="input-text" autocomplete="off" value="${user.age}"  placeholder="请输入年龄" id="age" name="age">
             </div>
         </div>
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>身份证号码：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="请输入身份证号码" id="idCard" name="idCard">
+                <input type="text" class="input-text" value="${user.idCard}" placeholder="请输入身份证号码" id="idCard" name="idCard">
             </div>
         </div>
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>银行卡号码：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="请输入银行卡号码" name="bankcard" id="bankcard">
+                <input type="text" class="input-text" placeholder="请输入银行卡号码" value="${user.bankcard}" name="bankcard" id="bankcard">
             </div>
         </div>
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>余额：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" placeholder="请输入余额" value="0" name="balance" id="balance">
+                <input type="text" class="input-text" placeholder="请输入余额" value="${user.balance}" name="balance" id="balance">
             </div>
         </div>
 
@@ -139,7 +144,6 @@
             onkeyup:false,
             focusCleanup:true,
             success:"valid",
-
         });
     });
 </script>
