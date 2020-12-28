@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sky.dao.UserOperationMapper">
+    <!--取款-->
+    <select id="selectAllWithdrawal" resultType="Money">
+        select * from money where state=2 and name = #{name}
+    </select>
+    <!--存款-->
+    <select id="selectAllDeposit" resultType="Money">
+        select * from money where state=1 and name = #{name}
+    </select>
+    <!--转账,有问题-->
+    <select id="selectTransferAccounts" resultType="Money">
+        select * from zhuanzhang where bankcarda= #{bankcard} or bankcardb=#{bankcard}
+    </select>
+</mapper>

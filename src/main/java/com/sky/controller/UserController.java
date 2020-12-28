@@ -1,8 +1,10 @@
 package com.sky.controller;
 
+import com.sky.domain.Money;
 import com.sky.domain.RoleFunction;
 import com.sky.domain.User;
 import com.sky.service.RoleFunctionService;
+import com.sky.service.UserOperationService;
 import com.sky.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -22,13 +25,17 @@ public class UserController {
     @Autowired
     private RoleFunctionService roleFunctionService;
 
+    @Autowired
+    private UserOperationService userOperationService;
+
     //登录
     @RequestMapping("public/login")
-    public ModelAndView login(String username, String password){
+    public ModelAndView login(String username, String password,HttpSession session){
         User user = userService.login(username, password);
         List<RoleFunction> functions = roleFunctionService.getFunctionByRoleId(user.getRoleId());
         ModelAndView modelAndView = new ModelAndView("index");
         if (user != null){
+            session.setAttribute("user01",user);
             modelAndView.addObject("user",user);
             modelAndView.addObject("functions",functions);
         }
@@ -98,6 +105,33 @@ public class UserController {
     public ModelAndView toUpdateUser(User user){
         ModelAndView modelAndView = new ModelAndView("updateUser");
         modelAndView.addObject("user",user);
+        return modelAndView;
+    }
+
+    //用户查询取款信息
+    @RequestMapping("private/User/findallWithDrawal")
+    public ModelAndView findallWithDrawal(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        User user=(User) session.getAttribute("user01");
+        String name=user.getName();
+        List<Money> monies = userOperationService.selectAllWithdrawal(name);
+        ModelAndView modelAndView = new ModelAndView("withdrawal");
+        if (monies != null){
+            modelAndView.addObject("monies",monies);
+        }
+        return modelAndView;
+    }
+    //用户查询存款信息
+    @RequestMapping("private/User/findallDeposit")
+    public ModelAndView findallDeposit(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        User user=(User) session.getAttribute("user01");
+        String name=user.getName();
+        List<Money> monies = userOperationService.selectAllDeposit(name);
+        ModelAndView modelAndView = new ModelAndView("deposit");
+        if (monies != null){
+            modelAndView.addObject("monies",monies);
+        }
         return modelAndView;
     }
 
