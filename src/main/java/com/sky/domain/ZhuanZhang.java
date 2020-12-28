@@ -2,15 +2,15 @@ package com.sky.domain;
 
 import javax.persistence.criteria.CriteriaBuilder;
 
-public class zhuanzhang {
+public class ZhuanZhang {
     private Integer id;
     private String bankcarda;
     private String bankcardb;
     private String money;
     private String time;
 
-    public zhuanzhang() {}
-    public zhuanzhang(Integer id, String bankcarda, String bankcardb, String money, String time) {
+    public ZhuanZhang() {}
+    public ZhuanZhang(Integer id, String bankcarda, String bankcardb, String money, String time) {
         this.id = id;
         this.bankcarda = bankcarda;
         this.bankcardb = bankcardb;
@@ -60,7 +60,7 @@ public class zhuanzhang {
 
     @Override
     public String toString() {
-        return "zhuanzhang{" +
+        return "ZhuanZhang{" +
                 "id=" + id +
                 ", bankcarda='" + bankcarda + '\'' +
                 ", bankcardb='" + bankcardb + '\'' +

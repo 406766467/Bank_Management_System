@@ -3,6 +3,7 @@ package com.sky.controller;
 import com.sky.domain.Money;
 import com.sky.domain.RoleFunction;
 import com.sky.domain.User;
+import com.sky.domain.ZhuanZhang;
 import com.sky.service.RoleFunctionService;
 import com.sky.service.UserOperationService;
 import com.sky.service.UserService;
@@ -131,6 +132,26 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView("deposit");
         if (monies != null){
             modelAndView.addObject("monies",monies);
+        }
+        return modelAndView;
+    }
+    //查看个人信息
+    @RequestMapping("private/User/findUserInfo")
+    public ModelAndView findUserInfo(){
+        ModelAndView modelAndView = new ModelAndView("UserInfo");
+        return modelAndView;
+    }
+
+    //查看转账记录
+    @RequestMapping("private/User/findUserZhuanZhuang")
+    public ModelAndView findUserZhuanZhuang(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("ZhuanZhang");
+        HttpSession session=request.getSession();
+        User user=(User) session.getAttribute("user01");
+        String bankcard=user.getBankcard();
+        List<ZhuanZhang> zhuanZhang=userOperationService.selectTransferAccounts(bankcard);
+        if (zhuanZhang != null){
+            modelAndView.addObject("zhuanZhang",zhuanZhang);
         }
         return modelAndView;
     }

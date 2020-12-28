@@ -11,8 +11,8 @@
     <select id="selectAllDeposit" resultType="Money">
         select * from money where state=1 and name = #{name}
     </select>
-    <!--转账,有问题-->
-    <select id="selectTransferAccounts" resultType="Money">
+    <!--转账-->
+    <select id="selectTransferAccounts" resultType="ZhuanZhang">
         select * from zhuanzhang where bankcarda= #{bankcard} or bankcardb=#{bankcard}
     </select>
 </mapper>

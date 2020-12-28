@@ -3,6 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -12,7 +13,7 @@
     <link rel="Shortcut Icon" href="/favicon.ico" />
     <!--[if lt IE 9]>
     <script type="text/javascript" src="<%=request.getContextPath()%>/lib/html5shiv.js"></script>
-    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/lib/respond.min.js"></script>
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/static/h-ui/css/H-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/static/h-ui.admin/css/H-ui.admin.css" />
@@ -23,32 +24,32 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
-    <title>存款记录</title>
+    <title>转账记录</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 存款记录 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 转账记录 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
     <table class="table table-border table-bordered table-bg">
         <thead>
         <tr>
-            <th scope="col" colspan="9">存款列表</th>
+            <th scope="col" colspan="9">转账列表</th>
         </tr>
         <tr class="text-c">
             <th width="40">id</th>
-            <th width="150">银行卡号</th>
-            <th width="90">姓名</th>
-            <th width="150">存款金额</th>
-            <th width="130">存款时间</th>
+            <th width="150">转账账号</th>
+            <th width="90">被转账账号</th>
+            <th width="150">转账金额</th>
+            <th width="130">转账时间</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${monies}" var="monies">
+        <c:forEach items="${zhuanZhang}" var="zhuanZhang">
             <tr class="text-c">
-                <td>${monies.id}</td>
-                <td>${monies.bankcard}</td>
-                <td>${monies.name}</td>
-                <td>${monies.money}</td>
-                <td>${monies.cktime}</td>
+                <td>${zhuanZhang.id}</td>
+                <td>${zhuanZhang.bankcarda}</td>
+                <td>${zhuanZhang.bankcardb}</td>
+                <td>${zhuanZhang.money}</td>
+                <td>${zhuanZhang.time}</td>
             </tr>
         </c:forEach>
         </tbody>
